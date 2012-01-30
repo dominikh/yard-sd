@@ -51,8 +51,8 @@ module SequenceDiagram
       self
     end
 
-    def error(kind, line)
-      raise ParseError, [kind, line].inspect
+    def error(kind, information)
+      raise ParseError, [kind, information].inspect
     end
 
     def to_s
@@ -103,12 +103,15 @@ module SequenceDiagram
       image    = nil
 
       Dir.chdir(dir) do
-        # TODO check exit status
         # File.open("/tmp/debug.tex", "w"){|f| f.print tex}
         IO.popen("pdflatex -halt-on-error", "w+") do |pipe|
           pipe.write tex
           pipe.close_write
           pipe.read
+        end
+
+        if $?.exitstatus != 0
+          error("Couldn't compile latex", nil)
         end
 
         args = ["-depth", "4",
