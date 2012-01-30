@@ -2,11 +2,16 @@ require "tmpdir"
 require "fileutils"
 
 module SequenceDiagram
+
   class Diagram
     Call        = Struct.new(:p1, :p2, :message, :return)
+    @@uid = 0
+
+    attr_reader :uid
     def initialize
       @participants = []
       @calls        = []
+      @uid          = @@uid += 1
     end
 
     def parse(s)

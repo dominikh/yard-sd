@@ -1,5 +1,3 @@
-require "base64"
-
 module SequenceDiagramMixin
   def htmlify(*args)
     res = super
@@ -27,9 +25,10 @@ module SequenceDiagramMixin
     begin
       diagram = SequenceDiagram::Diagram.new.parse(source)
       img     = diagram.to_png(metadata_h)
-      base64 = Base64.encode64(img).chomp
+      name = "images/diagrams/diagram_#{diagram.uid}.png"
+      options[:serializer].serialize(name, img)
 
-      return "<img src='%s' alt='Sequence diagram' />" % ["data:image/png;base64,#{base64}"]
+      return "<img src='%s' alt='Sequence diagram' />" % url_for(name)
     rescue SequenceDiagram::ParseError => e
       return "Error: Parsing error: #{h(e.inspect)}"
     rescue => e
