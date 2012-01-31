@@ -152,7 +152,7 @@ module SequenceDiagram
         args = ["-depth", "4",
                 "-quality", "95",
                 "-colorspace", "RGB",
-                "-density", "1000x1000",
+                "-density", "500x500",
                 "-flatten"]
 
         args << "-resize" << options[:size] if options[:size]
