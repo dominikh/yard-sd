@@ -1,7 +1,7 @@
 module SequenceDiagramMixin
   def htmlify(*args)
     res = super
-    res = res.gsub(/<pre class=".+? sd"><code>(.+?)<\/code><\/pre>/m, "\\1")
+    res = res.gsub(/<pre class="[^"]+? sd"><code>(.+?)<\/code><\/pre>/m, "\\1")
     res
   end
 
