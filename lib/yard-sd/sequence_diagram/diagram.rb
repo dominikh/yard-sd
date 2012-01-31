@@ -28,7 +28,7 @@ module SequenceDiagram
           aliasing = $5 || name
           thread = $1 == "thread"
           @participants << Participant.new(name, aliasing, distance, thread)
-        when /^(.+?)(->|-->)(.+?):(?: (.+))?$/
+        when /^(.+?)\s*(->|-->)\s*(.+?):(?: (.+))?$/
           p1      = @participants.find {|p| p.aliasing == $1}
           p2      = @participants.find {|p| p.aliasing == $3}
 
