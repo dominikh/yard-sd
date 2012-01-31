@@ -1,5 +1,9 @@
 # yard-sd
 
+Note: This README and {file:Example.md the example} are best viewed on
+{http://doc.fork-bomb.org/yard-sd/} or a service supporting the
+yard-sd plugin.
+
 ## Description
 
 yard-sd allows embedding sequence diagrams directly in docstrings and
@@ -42,9 +46,6 @@ languages, it can be used with the tripple-bang syntax (!!!LANG).
 
 ### Output
 
-(Note: If you're viewing this on Github or any other service that
-doesn't support yard-sd, check out the result at TODO link)
-
     !!!sd
     %size = 400
 
@@ -60,7 +61,13 @@ doesn't support yard-sd, check out the result at TODO link)
 ## The format
 
 A sequence diagram consists of two parts: the metadata (currently only
-the size) and the actual description of the diagram's content
+the size) and the actual description of the diagram's content.
+
+It has to be noted that yard-sd internally uses LaTeX and only
+automatically escapes the following special characters: `#`, `%` and
+`&`. That means that e.g. `$$`, `^` and `_` retain their original
+behaviour and can be used to further format the output, for example by
+embedding superscript.
 
 ### Metadata
 
@@ -83,7 +90,14 @@ In their most basic form, they consist of a type (`thread` or
 
 Example:
 
-    !!!!plain
+    !!!plain
+    thread Alice
+    participant Bob
+
+Output:
+
+    !!!sd
+    % size = 200
     thread Alice
     participant Bob
 
@@ -94,6 +108,13 @@ so `1` will double the distance, `2` will triple it and so on.
 Example:
 
     !!!plain
+    thread Alice
+    participant[1] Bob
+
+Output:
+
+    !!!sd
+    % size = 200
     thread Alice
     participant[1] Bob
 
@@ -108,6 +129,14 @@ Example:
 
     Alice -> Bob: Yey
 
+Output:
+
+    !!!sd
+    % size = 300
+    participant "Alice, the wonderful girl" as Alice
+    participant Bob
+
+    Alice -> Bob: Yey
 #### Messages
 
 The second part of description of the sequende diagram consists of
@@ -125,6 +154,19 @@ Example:
     Eve  --> Bob: Return value
     noreturn
 
+Output:
+
+    !!!sd
+    % size = 400
+    participant Alice
+    participant[1] Bob
+    participant[2] Eve
+
+    Alice -> Bob: Some message
+    Bob   -> Eve: Another message
+    Eve  --> Bob: Return value
+    noreturn
+
 #### Blocks
 
 Furthermore, it is possible to group messages into blocks, for example
@@ -134,15 +176,34 @@ Example:
 
     !!!plain
     block "Name" "Description"
-      Alice -> Bob:
-      Bob --> Alice:
+      Alice -> Bob: Msg1
+      Bob --> Alice: Ret1
 
       block "Another name" "Nested blocks, yey"
-        Alice -> Bob:
+        Alice -> Bob: Msg2
         noreturn
 
-    Alice -> Bob:
-    Bob --> Alice:
+    Alice -> Bob: Msg3
+    Bob --> Alice: Ret3
+
+Output:
+
+    !!!sd
+    % size = 200
+
+    participant Alice
+    participant Bob
+
+    block "Name" "Description"
+      Alice -> Bob: Msg1
+      Bob --> Alice: Ret1
+
+      block "Another name" "Nested blocks, yey"
+        Alice -> Bob: Msg2
+        noreturn
+
+    Alice -> Bob: Msg3
+    Bob --> Alice: Ret3
 
 Blocks automatically get closed, based on the indentation level.
 
