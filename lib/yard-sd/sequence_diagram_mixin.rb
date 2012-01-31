@@ -32,7 +32,7 @@ module SequenceDiagramMixin
     rescue SequenceDiagram::ParseError => e
       return "Error: Parsing error: #{h(e.inspect)}"
     rescue => e
-      return "Error: #{h(e.inspect)}"
+      return "Error: #{h(e.backtrace.inspect)}"
     end
   end
 end
