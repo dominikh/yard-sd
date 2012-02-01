@@ -1,8 +1,8 @@
 # yard-sd
 
 Note: This README and {file:Example.md the example} are best viewed on
-{http://doc.fork-bomb.org/yard-sd/} or a service supporting the
-yard-sd plugin.
+{http://rubydoc.info/github/dominikh/yard-sd/frames} or a service
+supporting the yard-sd plugin.
 
 ## Description
 
