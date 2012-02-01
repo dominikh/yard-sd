@@ -28,7 +28,7 @@ module SequenceDiagramMixin
       name = "images/diagrams/diagram_#{diagram.uid}.png"
       options[:serializer].serialize(name, img)
 
-      return "<img src='%s' alt='Sequence diagram' />" % url_for(name)
+      return "<img src='%s' alt='Sequence diagram' />" % url_for(options[:serializer].serialized_path(name))
     rescue SequenceDiagram::ParseError => e
       return "Error: Parsing error: #{h(e.inspect)}"
     rescue => e
