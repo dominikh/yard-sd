@@ -12,7 +12,7 @@ description with images.
 
 ## Requirements
 
-yard-sd needs YARD 0.8.0 to function properly.
+yard-sd needs YARD 0.7.5/0.8.0 to function properly.
 
 Furthermore, yard-sd needs the following binaries:
 
