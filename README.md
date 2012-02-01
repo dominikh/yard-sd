@@ -12,7 +12,9 @@ description with images.
 
 ## Requirements
 
-yard-sd needs the following binaries:
+yard-sd needs YARD 0.8.0 to function properly.
+
+Furthermore, yard-sd needs the following binaries:
 
 - pdflatex
 - convert (from the ImageMagick suite)
