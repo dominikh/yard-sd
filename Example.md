@@ -53,8 +53,6 @@ Output:
       SCN->SeS: ActAgent()
       SeS-->SCN:
       SCN-->SiS:
-      SiS->SCN: Something
-      SCN-->SiS: Something else
 
       SiS->PS: Update()
       PS->SeS: PrePhysicsUpdate
