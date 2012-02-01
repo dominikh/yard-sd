@@ -63,12 +63,6 @@ languages, it can be used with the tripple-bang syntax (!!!LANG).
 A sequence diagram consists of two parts: the metadata (currently only
 the size) and the actual description of the diagram's content.
 
-It has to be noted that yard-sd internally uses LaTeX and only
-automatically escapes the following special characters: `#`, `%` and
-`&`. That means that e.g. `$$`, `^` and `_` retain their original
-behaviour and can be used to further format the output, for example by
-embedding superscript.
-
 ### Metadata
 
 The only currently supported and required metadata is the size of the
