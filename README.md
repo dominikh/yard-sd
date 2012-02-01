@@ -205,3 +205,6 @@ Blocks automatically get closed, based on the indentation level.
 
 For a more advanced example, see {file:Example.md Example.md}.
 
+## Caveats
+
+yard-sd currently does not support Unicode.
