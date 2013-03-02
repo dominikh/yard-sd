@@ -1,3 +1,5 @@
+require "digest/sha1"
+
 module SequenceDiagramMixin
   def htmlify(*args)
     res = super
@@ -25,7 +27,9 @@ module SequenceDiagramMixin
     begin
       diagram = SequenceDiagram::Diagram.new.parse(source)
       img     = diagram.to_png(metadata_h)
-      name = "images/diagrams/diagram_#{diagram.uid}.png"
+
+      hash = Digest::SHA1.hexdigest(source)
+      name = "images/diagrams/#{hash}.png"
       options[:serializer].serialize(name, img)
 
       return "<img src='%s' alt='Sequence diagram' />" % url_for(options[:serializer].serialized_path(name))
