@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'yard-sd'
-  s.version = '0.0.3'
+  s.version = '0.0.4'
   s.summary = 'A YARD plugin for embedding sequence diagrams'
   s.authors = ['Dominik Honnef']
   s.email = ['dominikh@fork-bomb.org']

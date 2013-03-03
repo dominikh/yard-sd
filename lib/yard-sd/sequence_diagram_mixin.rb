@@ -8,6 +8,7 @@ module SequenceDiagramMixin
   end
 
   def html_syntax_highlight_sd(source)
+    orig_source = source
     lines = source.split("\n")
     metadata = lines.take_while {|l| l.start_with?("%")}
     source   = lines[metadata.size..-1].join("\n")
@@ -28,7 +29,7 @@ module SequenceDiagramMixin
       diagram = SequenceDiagram::Diagram.new.parse(source)
       img     = diagram.to_png(metadata_h)
 
-      hash = Digest::SHA1.hexdigest(source)
+      hash = Digest::SHA1.hexdigest(orig_source)
       name = "images/diagrams/#{hash}.png"
       options[:serializer].serialize(name, img)
 
